@@ -1,0 +1,43 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    background:#FFFFFF;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#111111;
+    margin-left:20px;
+}
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:80px;
+    background:#F8F9FA;
+}
+
+.hero-text h1{
+    font-size:42px;
+}
+
+.btn{
+    background:#F9C70A;
+    padding:12px 25px;
+    border-radius:8px;
+    text-decoration:none;
+    color:black;
+}
