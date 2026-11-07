@@ -1,0 +1,121 @@
+
+/* WARNA UTAMA SMART PARKING */
+:root {
+    --primary: #7030EF;
+    --secondary: #DB1FFF;
+    --dark: #090820;
+    --white: #FFFFFF;
+}
+
+/* SIDEBAR */
+.sidebar {
+    background: var(--dark) !important;
+    color: var(--white);
+}
+
+.menu a:hover,
+.menu a.active {
+    background: var(--primary) !important;
+    color: var(--white);
+}
+
+/* BACKGROUND DASHBOARD */
+body {
+    background: #f7f5ff;
+}
+
+/* KARTU STATISTIK */
+.card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(112, 48, 239, 0.08);
+}
+
+.card.purple {
+    border-left-color: var(--primary);
+}
+
+.card.green {
+    border-left-color: var(--primary);
+}
+
+.card.orange {
+    border-left-color: var(--secondary);
+}
+
+.card.red {
+    border-left-color: var(--secondary);
+}
+
+/* TOMBOL */
+.btn {
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 9px;
+}
+
+.btn:hover {
+    background: var(--secondary);
+}
+
+/* BANNER MOBIL */
+.hero-car {
+    background: linear-gradient(
+        120deg,
+        var(--primary),
+        var(--secondary)
+    );
+    color: var(--white);
+    border-radius: 18px;
+    padding: 20px 30px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.hero-car .hero-text h2,
+.hero-car .hero-text p {
+    color: var(--white);
+}
+
+.hero-car img {
+    width: 300px;
+    max-width: 45%;
+    height: 170px;
+    object-fit: contain;
+}
+
+/* SLOT PARKIR */
+.slot {
+    background: #f1eaff;
+    border: 1px solid #d6c4ff;
+    border-radius: 13px;
+}
+
+.slot.occupied {
+    background: #fceaff;
+    border-color: #edb4ff;
+}
+
+.slot button {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.slot.occupied button {
+    background: var(--secondary);
+}
+
+@media (max-width: 650px) {
+    .hero-car {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-car img {
+        width: 100%;
+        max-width: 100%;
+    }
+}
