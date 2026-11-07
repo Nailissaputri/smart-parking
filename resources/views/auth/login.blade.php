@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,14 +28,14 @@
             position: relative;
             width: 760px;
             max-width: 100%;
-            min-height: 415px;
+            min-height: 500px;
             background: #f4f2f2;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.16);
         }
 
-        /* Form Login dan Register */
+        /* FORM LOGIN DAN REGISTER */
         .form-container {
             position: absolute;
             top: 0;
@@ -59,11 +60,13 @@
         }
 
         .container.active .sign-in {
-            transform: translateX(100%);
+            transform: translateX(-100%);
+            opacity: 0;
+            z-index: 1;
         }
 
         .container.active .sign-up {
-            transform: translateX(-100%);
+            transform: translateX(0);
             opacity: 1;
             z-index: 5;
         }
@@ -80,16 +83,11 @@
             margin-bottom: 15px;
         }
 
-        form p {
-            color: #777;
-            font-size: 13px;
-            margin: 12px 0 18px;
-        }
-
-        /* Ikon sosial media dekoratif */
+        /* IKON SOSIAL MEDIA */
         .social-icons {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 25px;
             margin: 15px 0;
         }
@@ -105,6 +103,13 @@
             font-size: 17px;
             font-weight: bold;
             color: #111;
+            flex-shrink: 0;
+        }
+
+        .social-icons svg {
+            width: 27px;
+            height: 27px;
+            display: block;
         }
 
         .social-text {
@@ -113,7 +118,7 @@
             margin-bottom: 15px;
         }
 
-        /* Input minimalis seperti referensi */
+        /* INPUT FORM */
         .form-input {
             width: 100%;
             border: none;
@@ -134,6 +139,13 @@
             color: #888;
         }
 
+        /* MENCEGAH BACKGROUND AUTOFILL BIRU */
+        .form-input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px #f4f2f2 inset;
+            -webkit-text-fill-color: #222;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
         .forgot-password {
             display: block;
             text-align: center;
@@ -142,7 +154,7 @@
             color: #222;
         }
 
-        /* Tombol gradasi */
+        /* TOMBOL UTAMA */
         .main-button {
             border: none;
             border-radius: 30px;
@@ -161,7 +173,7 @@
             transform: translateY(-2px);
         }
 
-        /* Panel kanan */
+        /* PANEL NAVY */
         .toggle-container {
             position: absolute;
             top: 0;
@@ -260,7 +272,7 @@
             margin: 8px 0;
         }
 
-        /* Tampilan HP */
+        /* TAMPILAN HP */
         @media (max-width: 650px) {
             body {
                 padding: 15px;
@@ -276,6 +288,7 @@
                 padding: 25px;
             }
 
+            .sign-in,
             .sign-up {
                 left: 0;
             }
@@ -331,7 +344,7 @@
 
 <body>
 
-<div class="container" id="container">
+<div class="container active" id="container">
 
     <!-- FORM LOGIN -->
     <div class="form-container sign-in">
@@ -344,8 +357,7 @@
 
                 <!-- GitHub -->
                 <span title="GitHub">
-                    <svg viewBox="0 0 24 24" width="27" height="27"
-                        fill="currentColor" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-label="GitHub">
                         <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.68-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.48-.28-5.08-1.24-5.08-5.52 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.54.23 2.68.11 2.96.72.78 1.15 1.77 1.15 2.99 0 4.29-2.61 5.24-5.1 5.51.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
                     </svg>
                 </span>
@@ -374,6 +386,7 @@
                 name="email"
                 placeholder="Email"
                 value="{{ old('email') }}"
+                autocomplete="email"
                 required
             >
 
@@ -382,10 +395,13 @@
                 type="password"
                 name="password"
                 placeholder="Password"
+                autocomplete="current-password"
                 required
             >
 
-            <span class="forgot-password">Forgot your password?</span>
+            <span class="forgot-password">
+                Forgot your password?
+            </span>
 
             <button type="submit" class="main-button">
                 Sign In
@@ -400,7 +416,26 @@
 
             <h1>Create Account</h1>
 
-            <p>Register with your personal details</p>
+            <div class="social-icons">
+
+                <!-- GitHub -->
+                <span title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-label="GitHub">
+                        <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.68-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.48-.28-5.08-1.24-5.08-5.52 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.54.23 2.68.11 2.96.72.78 1.15 1.77 1.15 2.99 0 4.29-2.61 5.24-5.1 5.51.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+                    </svg>
+                </span>
+
+                <!-- Google -->
+                <span title="Google">G+</span>
+
+                <!-- LinkedIn -->
+                <span title="LinkedIn">in</span>
+
+            </div>
+
+            <div class="social-text">
+                or use email for password
+            </div>
 
             @if ($errors->any() && old('name'))
                 <div class="error">
@@ -412,8 +447,9 @@
                 class="form-input"
                 type="text"
                 name="name"
-                placeholder="Full Name"
+                placeholder="Name"
                 value="{{ old('name') }}"
+                autocomplete="name"
                 required
             >
 
@@ -423,6 +459,7 @@
                 name="email"
                 placeholder="Email"
                 value="{{ old('email') }}"
+                autocomplete="email"
                 required
             >
 
@@ -431,6 +468,7 @@
                 type="password"
                 name="password"
                 placeholder="Password"
+                autocomplete="new-password"
                 required
             >
 
@@ -439,6 +477,7 @@
                 type="password"
                 name="password_confirmation"
                 placeholder="Confirm Password"
+                autocomplete="new-password"
                 required
             >
 
@@ -454,7 +493,10 @@
 
             <div class="toggle-panel toggle-left">
                 <h1>Welcome Back!</h1>
-                <p>Enter your personal details to use all of the site features.</p>
+
+                <p>
+                    Enter your personal details to use all of the site features.
+                </p>
 
                 <button type="button" class="toggle-button" id="loginBtn">
                     Sign In
@@ -463,7 +505,10 @@
 
             <div class="toggle-panel toggle-right">
                 <h1>Hello, Friend!</h1>
-                <p>Register with your personal details to use all of site features.</p>
+
+                <p>
+                    Register with your personal details to use all of site features.
+                </p>
 
                 <button type="button" class="toggle-button" id="registerBtn">
                     Sign Up

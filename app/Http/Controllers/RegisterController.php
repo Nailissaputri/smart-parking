@@ -28,12 +28,13 @@ class RegisterController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => $validated['password'],
+            'role' => 'user',
         ]);
 
         Auth::login($user);
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/parking');
+        return redirect('/user');
     }
 }

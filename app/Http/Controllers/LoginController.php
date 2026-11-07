@@ -17,7 +17,11 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/parking');
+            if (Auth::user()->role === 'admin') {
+                return redirect('/admin');
+            }
+
+            return redirect('/user');
         }
 
         return back()->withErrors([
