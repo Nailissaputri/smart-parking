@@ -17,7 +17,8 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::post('/login', [LoginController::class, 'login'])->name('login.process');
+Route::post('/login', [LoginController::class, 'login'])
+    ->name('login.process');
 
 Route::post('/register', [RegisterController::class, 'register'])
     ->name('register.process');
@@ -35,10 +36,6 @@ Route::middleware('auth')->group(function () {
 
         return view('user');
     })->name('user.dashboard');
-
-    Route::get('/parking', function () {
-        return view('parking');
-    });
 
     Route::post('/logout', [LoginController::class, 'logout'])
         ->name('logout');

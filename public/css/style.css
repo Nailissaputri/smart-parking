@@ -77,40 +77,269 @@ body{
 
 /* PARKING */
 
-.parking{
-    min-height:100vh;
-    background:#F8F9FA;
-    padding:80px;
+
+/* PARKING AVAILABILITY */
+
+.parking-availability-section {
+    min-height: 100vh;
+    background: #09071C;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.parking h2{
-    text-align:center;
-    margin-bottom:50px;
+.parking-availability-section h2 {
+    color: #FFFFFF;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 45px;
 }
 
-.slot-container{
-    display:flex;
-    justify-content:center;
-    gap:30px;
+.parking-board {
+    width: 92%;
+    max-width: 1250px;
+    padding: 55px 70px;
+    border-radius: 30px;
+    background: linear-gradient(
+        135deg,
+        #321044,
+        #290D43,
+        #1D1038
+    );
+    box-shadow: 0 0 35px rgba(135, 59, 255, 0.35);
 }
 
-.slot{
-    width:150px;
-    height:120px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    border-radius:12px;
-    font-weight:bold;
+.parking-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 55px;
 }
 
-.available{
-    background:#d4edda;
+.parking-indicator {
+    width: 150px;
+    height: 18px;
+    background: #F0F0F0;
+    border-radius: 20px;
 }
 
-.occupied{
-    background:#f8d7da;
+.parking-slots {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+}
+
+.parking-slot {
+    height: 110px;
+    background: #F0F0F0;
+    border-radius: 15px;
+}
+
+/* PARKING AVAILABILITY */
+
+.parking-availability-section {
+    min-height: 100vh;
+    background: #09071C;
+    padding: 50px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parking-board {
+    width: 100%;
+    max-width: 1250px;
+    padding: 20px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: #17132E;
+    box-shadow: 0 0 25px rgba(135, 59, 255, 0.12);
+}
+
+/* HEADER DAN LEGENDA */
+
+.parking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.parking-header h2 {
+    color: white;
+    font-size: 25px;
+}
+
+.parking-legend {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #E5E1F0;
+    font-size: 14px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+}
+
+.available-color {
+    background: #00D6A0;
+}
+
+.occupied-color {
+    background: #FF315D;
+}
+
+.selected-color {
+    background: #873BFF;
+}
+
+/* TOMBOL ZONA */
+
+.zone-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    margin-bottom: 18px;
+}
+
+.zone-button {
+    padding: 15px;
+    border: 1px solid #39314F;
+    border-radius: 13px;
+    background: #241E3D;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.zone-button:hover {
+    border-color: #873BFF;
+}
+
+.zone-button.active {
+    background: linear-gradient(120deg, #853BFF, #D315F5);
+    border-color: transparent;
+}
+
+/* GRID SLOT PARKIR */
+
+.parking-slots {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 11px;
+}
+
+.parking-slot {
+    min-height: 115px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 14px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.parking-slot.available {
+    background: #073D37;
+    border-color: #087F70;
+}
+
+.parking-slot.occupied {
+    background: #4A192D;
+    border-color: #9B294E;
+    cursor: not-allowed;
+}
+
+.parking-slot.selected {
+    background: #382064;
+    border: 2px solid #873BFF;
+}
+
+.car-icon {
+    font-size: 25px;
+    margin-bottom: 3px;
+}
+
+.slot-number {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.slot-status {
+    font-size: 13px;
+}
+
+.available .slot-status {
+    color: #00E5A8;
+}
+
+.occupied .slot-status {
+    color: #FF537B;
+}
+
+.selected .slot-status {
+    color: #C7A3FF;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .parking-availability-section {
+        padding: 35px 12px;
+    }
+
+    .parking-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .parking-legend {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .parking-board {
+        padding: 17px 12px;
+    }
+
+    .zone-button {
+        padding: 12px 5px;
+        font-size: 14px;
+    }
+
+    .parking-slots {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+    }
+
+    .parking-slot {
+        min-height: 95px;
+    }
+
+    .slot-number {
+        font-size: 14px;
+    }
+
+    .slot-status {
+        font-size: 11px;
+    }
 }
 
 /* ABOUT */

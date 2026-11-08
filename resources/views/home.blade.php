@@ -46,36 +46,136 @@
 
     </section>
 
-    <!-- PARKING -->
-    <section id="parking" class="parking">
+    
+    <!-- PARKING AVAILABILITY -->
+    <section id="parking" class="parking-availability-section">
 
-        <h2>Parking Availability</h2>
+        <div class="parking-board">
 
-        <div class="slot-container">
+            <div class="parking-header">
+                <h2>Parking Availability</h2>
 
-            <div class="slot available">
-                A1 <br>
-                Tersedia
+                <div class="parking-legend">
+                    <div class="legend-item">
+                        <span class="legend-color available-color"></span>
+                        Available
+                    </div>
+
+                    <div class="legend-item">
+                        <span class="legend-color occupied-color"></span>
+                        Occupied
+                    </div>
+
+                     <div class="legend-item">
+                        <span class="legend-color selected-color"></span>
+                        Selected
+                    </div>
+
+                </div>
             </div>
 
-            <div class="slot occupied">
-                A2 <br>
-                Terisi
+            <div class="zone-tabs">
+                <button class="zone-button active" data-zone="A">
+                    Zona A
+                </button>
+
+                <button class="zone-button" data-zone="B">
+                    Zona B
+                </button>
+
+                <button class="zone-button" data-zone="C">
+                    Zona C
+                </button>
             </div>
 
-            <div class="slot available">
-                A3 <br>
-                Tersedia
-            </div>
-
-            <div class="slot occupied">
-                A4 <br>
-                Terisi
-            </div>
+            <div class="parking-slots" id="parkingSlots"></div>
 
         </div>
 
     </section>
+
+    <script>
+        // Data contoh status parkir setiap zona
+        const parkingData = {
+            A: [
+                false, false, true, false, true,
+                true, true, true, false, true,
+                false, true, true, true, false
+            ],
+
+            B: [
+                true, false, true, true, false,
+                false, true, true, true, false,
+                true, true, false, true, true
+            ],
+
+            C: [
+                false, true, true, false, true,
+                true, false, true, false, true,
+                true, false, true, true, false
+            ]
+        };
+
+        const parkingSlots = document.getElementById('parkingSlots');
+        const zoneButtons = document.querySelectorAll('.zone-button');
+
+        let selectedSlot = null;
+
+        function tampilkanSlot(zona) {
+            parkingSlots.innerHTML = '';
+
+            selectedSlot = null;
+
+            parkingData[zona].forEach((tersedia, index) => {
+                const nomor = String(index + 1).padStart(2, '0');
+
+                const slot = document.createElement('div');
+
+                slot.className = tersedia
+                    ? 'parking-slot available'
+                    : 'parking-slot occupied';
+
+                slot.innerHTML = `
+                    <div class="car-icon">
+                        ${tersedia ? '🚘' : '🚙'}
+                    </div>
+
+                    <div class="slot-number">
+                        ${zona}${nomor}
+                    </div>
+
+                    <div class="slot-status">
+                        ${tersedia ? 'Available' : 'Occupied'}
+                    </div>
+                `;
+
+                slot.addEventListener('click', function () {
+                    if (!tersedia) return;
+
+                    document.querySelectorAll('.parking-slot')
+                        .forEach(item => item.classList.remove('selected'));
+
+                    slot.classList.add('selected');
+                    selectedSlot = `${zona}${nomor}`;
+                });
+
+                parkingSlots.appendChild(slot);
+            });
+        }
+
+        zoneButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                zoneButtons.forEach(item => item.classList.remove('active'));
+
+                this.classList.add('active');
+
+                tampilkanSlot(this.dataset.zone);
+            });
+        });
+
+        // Menampilkan Zona A saat halaman dibuka
+        tampilkanSlot('A');
+    </script>
 
     <!-- ABOUT -->
     <section id="about" class="about">
